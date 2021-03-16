@@ -12,7 +12,7 @@
 int (*match_spec(const char *format))(va_list)
 {
 	unsigned int i;
-	format_t p[] = {
+	print_t p[] = {
 		{"c", print_c},
 		{"s", print_s},
 		{"i", print_n},
@@ -20,11 +20,11 @@ int (*match_spec(const char *format))(va_list)
 		{NULL, NULL}
 	};
 
-	for (i = 0; p[i].spec; i++)
+	for (i = 0; p[i].spec != '\0'; i++)
 	{
 		if (p[i].spec == format)
 		{
-			return (p[i].specifier);
+			return (p[i].func);
 		}
 	}
 	return (NULL);

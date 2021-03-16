@@ -13,13 +13,13 @@ int _printf(const char *format, ...)
 {
 	unsigned int i = 0;
 	unsigned int j = 0;
-	va_list v_list;
-	int (*specifier)(va_list);
+	va_list p_list;
+	int (*func)(va_list);
 
 	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
 		return (-1);
 
-	va_start(v_list, format);
+	va_start(p_list, format);
 
 	for (i = 0; format && format[i]; i++)
 	{
@@ -27,10 +27,10 @@ int _printf(const char *format, ...)
 		{
 			if (format[i + 1] != '%')
 			{
-				specifier = match_spec(format[i + 1]);
-				if (specifier != NULL)
+				func = match_spec(format[i + 1]);
+				if (func != NULL)
 				{
-					j += specifier(p_list);
+					j += func(p_list);
 					i++;
 				}
 				else
@@ -52,6 +52,6 @@ int _printf(const char *format, ...)
 			j++;
 		}
 	}
-	va_end(v_list);
+	va_end(p_list);
 	return (j);
 }

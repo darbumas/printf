@@ -1,5 +1,4 @@
 #include "holberton.h"
-#include <stdlib.h>
 
 /**
  * print_c - Prints character
@@ -66,7 +65,7 @@ int print_n(va_list num)
 {
 	unsigned int g = 1;
 	int length = 0;
-	unsigned int absolute_val, quant, i, num, last, digit, num_val;
+	unsigned int absolute_val, quant, i, n, last, digit, num_val;
 	int number;
 	char c;
 
@@ -89,17 +88,17 @@ int print_n(va_list num)
 		g = g * 10;
 	for (digit = quant; digit >= 1; digit--)
 	{
-		num = absolute_val / g;
-		if (num >= 10)
+		n = absolute_val / g;
+		if (n >= 10)
 		{
-			last = num % 10;
+			last = n % 10;
 			c = last + '0';
 			write(1, &c, 1);
 			length++;
 		}
 		else
 		{
-			c = num + '0';
+			c = n + '0';
 			write(1, &c, 1);
 			length++;
 		}

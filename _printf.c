@@ -1,46 +1,52 @@
 #include "holberton.h"
-#include <stdlib.h>
-
 /**
- * _printf - Simple version of printf
- *
- * @format: Arguments
- *
- * Return: # of characters printed
+ * _printf - implementation of printf(); variadic ƒ() returns number of
+ * characters printed
+ * @format: constant pointer to char; will constitute different types of data.
+ * Return: number of characters printed
  */
-
 int _printf(const char *format, ...)
 {
-	int i = 0;
-	int j = 0;
-	va_list v_list;
-	int (*specifier)(va_list);
+	unsigned int i = 0, length = 0;
+	va_list p_list;
+	int (*func)(va_list);
 
-	if (format == NULL)
+	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
 		return (-1);
 
-	va_start(v_list, format);
-	while (format && format[i])
-	{
-		for (; format[i] && format[i] != '%'; i++)
-		{
-			_putchar(format[i]);
-			j++;
-		}
-		if (!format[i])
-			return (j);
-		specifier = match_spec(&format[i + 1]);
-		if (specifier)
-		{
-			j += specifier(v_list);
-			i += 2;
+	va_start(p_list, format);
 
-			if (!format[i + 1])
-				return (-1);
+	for (i = 0; format && format[i]; i++)
+	{
+		if (format[i] == '%')
+		{
+			if (format[i + 1] != '%')
+			{
+				func = match_spec(format[i + 1]);
+				if (func != NULL)
+				{
+					length += func(p_list);
+					i++;
+				}
+				else
+				{
+					write(1, &format[i], 1);
+					length++;
+				}
+			}
 			else
-				continue;
+			{
+				write(1, &format[i], 1);
+				length++;
+				i++;
+			}
+		}
+		else
+		{
+			write(1, &format[i], 1);
+			length++;
 		}
 	}
-	va_end(v_list);
-	return (j);
+	va_end(p_list);
+	return (length);
 }

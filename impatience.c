@@ -16,6 +16,7 @@ int (*match_spec(char s))(va_list)
 		{'s', for_the_strings},
 		{'i', for_the_numbers},
 		{'d', for_the_numbers},
+		{'b', for_the_binaries},
 		{'\0', '\0'}
 	};
 

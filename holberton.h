@@ -24,6 +24,6 @@ int (*match_spec(const char format))(va_list);
 int for_the_chars(va_list c);
 int for_the_strings(va_list s);
 int for_the_numbers(va_list num);
-
+int for_the_binaries(va_list d);
 
 #endif

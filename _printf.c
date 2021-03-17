@@ -1,7 +1,6 @@
 #include "holberton.h"
 /**
- * _printf - implementation of printf(); variadic ƒ() returns number of
- * characters printed
+ * _printf - implementation of printf(); returns number characters printed.
  * @format: constant pointer to char; will constitute different types of data.
  * Return: number of characters printed
  */

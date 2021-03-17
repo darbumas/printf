@@ -42,8 +42,14 @@ int _printf(const char *format, ...)
 		}
 		else
 		{
+<<<<<<< 6cee300dc4ed0275a972bc0c802a4724034cdd12
 			write(1, &format[i], 1);
 			length++;
+=======
+			j += specifier(v_list);
+			i += 2;
+			continue;
+>>>>>>> Fix betty errors.
 		}
 	}
 	va_end(p_list);

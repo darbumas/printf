@@ -2,7 +2,7 @@
 /**
  * _printf - implementation of printf(); returns number characters printed.
  * @format: constant pointer to char; will constitute different types of data.
- * Return: number of characters printed
+ * Return: number of characters printed.
  */
 int _printf(const char *format, ...)
 {
@@ -12,7 +12,6 @@ int _printf(const char *format, ...)
 
 	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
 		return (-1);
-
 	va_start(p_list, format);
 
 	for (i = 0; format && format[i]; i++)
@@ -42,14 +41,8 @@ int _printf(const char *format, ...)
 		}
 		else
 		{
-<<<<<<< 6cee300dc4ed0275a972bc0c802a4724034cdd12
 			write(1, &format[i], 1);
 			length++;
-=======
-			j += specifier(v_list);
-			i += 2;
-			continue;
->>>>>>> Fix betty errors.
 		}
 	}
 	va_end(p_list);

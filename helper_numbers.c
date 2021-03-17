@@ -7,7 +7,7 @@
 int for_the_numbers(va_list num)
 {
 	int number, length = 0;
-	unsigned int g, absolute_val, quant, i, d, last, digit, num_val;
+	unsigned int g = 1, absolute_val, quant, i, d, last, digit, num_val;
 	char c;
 
 	number = va_arg(num, int);
